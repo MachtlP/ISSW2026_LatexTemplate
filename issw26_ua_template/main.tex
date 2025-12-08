@@ -26,7 +26,6 @@
 %  4 - Follow instructions below and come to Whistler
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass{issw26-ua}
-\addbibresource{example.bib}
 
 \usepackage[base]{babel}
 \usepackage{graphicx}
@@ -39,13 +38,12 @@
   math/alt/use            = true
 }
 
-\usepackage[backend=biber,style=authoryear]{biblatex}
 \addbibresource{example.bib}
 
 \usepackage{parskip} % no indent with new paragraph
 
 % ================= TITLE, AUTHOR==================================================
-\title{INSTRUCTIONS FOR FORMATTING YOUR PAPER
+\title{INSTRUCTIONS FOR FORMATTING YOUR PAPER\\
 INTERNATIONAL SNOW SCIENCE WORKSHOP 2026, WHISTLER, CANADA}
 
 \author[1]{Depthina A. Hoar\corref{complete\_address}}
@@ -88,7 +86,7 @@ will only be published electronically.
 
 \section{PAPER DEADLINE}
 
-Papers must be received by \textbf{\underline{August 24, 2026}}.\\
+Papers must be received by \textbf{\bolduline{August 24, 2026}}.\\
 
 We cannot guarantee that late papers will be included in the conference line-up and the proceedings publication. \textbf{Your oral or poster presentation slot is conditional on us receiving your paper by this date.}
 
@@ -96,7 +94,7 @@ We cannot guarantee that late papers will be included in the conference line-up 
 Authors are greatly encouraged to submit their papers in English, since they have a far wider reach.
 
 \section{PAGE LIMIT, LAYOUT \& TEXT FONT}
-Papers are limited to \textbf{\underline{no more than 8 pages}}, including references, appendices, etc., and must be formatted on A4 pages (210 mm x 297 mm) with 2.5 cm (about 1 inch) margins on all sides. The document class automatically handles the two-column layout with appropriate spacing.\\
+Papers are limited to \textbf{\bolduline{no more than 8 pages}}, including references, appendices, etc., and must be formatted on A4 pages (210 mm x 297 mm) with 2.5 cm (about 1 inch) margins on all sides. The document class automatically handles the two-column layout with appropriate spacing.\\
 
 The text is automatically placed in newspaper style columns with a 0.8 cm space between columns. If necessary, figures, photos, or charts may span the two columns using \verb|figure*| or \verb|table*| environments.
 
@@ -114,7 +112,9 @@ The corresponding author's address is automatically formatted in the frontmatter
 
 \subsection{References Style}
 
-List all bibliographic references at the end of the paper in alphabetical order by first author. When referring to them in the text, use the \verb|\cite{}| command with the citation key, e.g., \citet{McClung2006}. Use referencing style as used in \href{https://www.natural-hazards-and-earth-system-sciences.net/submission.html#references}{Natural Hazards and Earth System Sciences} (see sample references at the end of these instructions) \citep{McClung2006}.
+List all bibliographic references at the end of the paper in alphabetical order by first author. When referring to them in the text, use the \verb|\textcite{}| command with the citation key, e.g., \textcite{McClung2006}. Use referencing style as used in \href{https://www.natural-hazards-and-earth-system-sciences.net/submission.html}%
+{\textit{Natural Hazards and Earth System Sciences}}
+(see sample references at the end of these instructions) \parencite{McClung2006}.
 
 \subsection{Equation numbers}
 Equations are numbered automatically. Use the \verb|equation| environment and reference them with \verb|\ref{}| or \verb|\eqref{}|.
@@ -191,11 +191,6 @@ For questions about formatting and content, please contact the ISSW 2026 Technic
 \section*{ACKNOWLEDGEMENTS}
 Thank you.
 
-
-
 \printbibliography[title={REFERENCES}]
-
-
-
 
 \end{document}

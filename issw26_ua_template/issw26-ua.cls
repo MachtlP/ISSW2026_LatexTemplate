@@ -36,9 +36,8 @@
   bottom=2.5cm
 ]{geometry}
 \setlength\columnsep{0.8cm}   % space between columns (0.8 cm)
-\setlength\parindent{12pt}
-\setlength\parskip{0pt}
-
+\setlength\parindent{0pt}       % no first-line indent
+\setlength\parskip{4pt plus 1pt minus 1pt} % small vertical space between paragraphs
 
 % Subtle micro-typographic improvements
 \RequirePackage{microtype}
@@ -57,6 +56,17 @@
 % Hyperlinks + bookmarks (PDF/UA-friendly; metadata handled via DocumentMetadata)
 \RequirePackage{hyperref}
 \RequirePackage{bookmark}
+% ----- Hyperlink styling (blue, underlined, italic) -----
+\hypersetup{
+  colorlinks=true,        % colored links instead of boxes
+  linkcolor=blue,   % section headings, figure/table refs, etc.
+  urlcolor=blue,     % <---- URLs (mostly in references) NOT blue
+  citecolor=black   % optional: citations in text
+}
+
+% Make hyperlinks underlined and italic
+\let\oldhref\href
+\renewcommand{\href}[2]{\oldhref{#1}{\uline{#2}}}
 
 \RequirePackage[normalem]{ulem} % provides \uline
 \RequirePackage{titlesec}
@@ -64,11 +74,30 @@
 % Bibliography: biblatex + biber, natbib-compatible commands
 \RequirePackage[
   backend=biber,
-  style=authoryear,
-  natbib=true,      % so \citet, \citep work
-  maxcitenames=2,
-  maxbibnames=99
+  style=authoryear,  % author–year citations like NHESS
+  giveninits=true,   % authors as "Smith, J. A."
+  maxcitenames=2,    % in-text: Smith & Miller, or Smith et al.
+  maxbibnames=99,    % full author list in references
+  sorting=nyt,       % name, year, title
+  dashed=false,      % do NOT replace repeated authors with dash
+  doi=true,
+  url=false          % normally NHESS prefers DOI over URL
 ]{biblatex}
+% -------- NHESS-like reference formatting (no italics in citations/refs) --------
+\AtBeginBibliography{%
+\renewcommand{\mkbibemph}[1]{#1}
+}
+% 2) Authors as "Family, G. I."
+\DeclareNameAlias{sortname}{family-given}
+\DeclareNameAlias{default}{family-given}
+% 3) Titles and journaltitles upright (no extra formatting)
+\DeclareFieldFormat[article]{title}{#1}
+\DeclareFieldFormat[article]{journaltitle}{#1}
+% 4) Print DOI as "https://doi.org/..."
+\DeclareFieldFormat{doi}{%
+  \ifstrequal{#1}{}{}{\space https://doi.org/#1}%
+}
+
 
 \RequirePackage{etoolbox} %for marcos that make tables taggable
 \RequirePackage[table]{xcolor} % enables \rowcolor, colored cells, etc.
@@ -138,14 +167,16 @@
   \fi
 }
 
+
 % \address[<affil key>]{<affiliation text>}
 \newcommand\address[2][]{%
   \ifx\issw@affils\@empty
-    \gdef\issw@affils{\textsuperscript{#1}#2}%
+    \gdef\issw@affils{\textsuperscript{#1}\textit{#2}}%
   \else
-    \g@addto@macro\issw@affils{\\\textsuperscript{#1}#2}%
+    \g@addto@macro\issw@affils{\\\textsuperscript{#1}\textit{#2}}%
   \fi
 }
+
 
 % Mark corresponding author in the author line (star)
 \newcommand\corref[1]{\textsuperscript{*}\footnotemark}
@@ -178,16 +209,18 @@
   {0.5em}
   {\uline}                                          % thin underline under title text
 
-% --- Spacing to roughly match article/ISSW defaults ---
+
+% Section spacing tuned to resemble ISSW Word template
 \titlespacing*{\section}
-  {0pt}                                   % left indent
-  {3.5ex plus 1ex minus .2ex}            % space above
-  {2.3ex plus .2ex}                      % space below
+  {0pt}                         % left indent
+  {2.5ex plus 0.5ex minus 0.2ex}% space above
+  {1.4ex plus 0.3ex}            % space below
 
 \titlespacing*{\subsection}
   {0pt}
-  {3.25ex plus 1ex minus .2ex}
-  {1.5ex plus .2ex}
+  {2.5ex plus 0.5ex minus 0.2ex}% space above
+  {1.0ex plus 0.2ex}            % space below
+
 
 % Title + abstract + keywords style similar to elsarticle_issw MaketitleBox
 
@@ -201,7 +234,7 @@
         {\normalfont\mdseries\upshape
          \def\baselinestretch{1}%
          \large\@title\par}%
-        \vskip18pt
+        \vskip12pt
         % Authors + affiliations
         {\normalfont\mdseries\upshape
          \normalsize
@@ -216,7 +249,7 @@
           {\normalfont\mdseries\upshape
            \small \issw@affils\par}%
         \fi
-        \vskip24pt
+        \vskip12pt
         % Abstract (full width)
         \ifvoid\issw@absbox\else
           {\normalfont\mdseries\upshape
@@ -324,13 +357,13 @@
   #1\\%
 }
 
+% Bold underline command
 
-% ============================================================
-% Accessible equation environment (PDF/UA)
-% Usage:
-% \begin{AccessibleEquation}{eq:1}{Work W equals the integral from x_0 to x_1 of F dx}
-%   W = \int_{x_0}^{x_{1}} F\, dx
-% \end{AccessibleEquation}
+\newcommand{\bolduline}[1]{%
+  {\renewcommand{\ULthickness}{0.14em}\uline{#1}}%
+}
+
+
 
 
 
