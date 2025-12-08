@@ -7,7 +7,7 @@
 %
 % LaTeX Template for extended abstracts for the
 % ISSW 2026 in Whistler, Canada.  
-%  To meet accessibility Requirements this is a completly new template. The .cls file is therefore completly new and within the .tex file you wil find some slight adaptions of how to handle figuresa and tables 
+%  To meet accessibility Requirements this is a completly new template. The .cls file is therefore new and in the .tex file you wil find some slight adaptions of how to handle figuresa and tables 
 % Cheers Machtl 
 
 %
@@ -21,7 +21,7 @@
 %  
 %  2 - Write your contribution
 %
-%  3 - Compile with: pdflatex, then bibtex (if using citations), then pdflatex twice more
+%  3 - Compile with: LuaLaTeX, Biber, LuaLaTeX, LuaLaTeX --> PDF/UA-2-compliant structure
 %
 %  4 - Follow instructions below and come to Whistler
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -44,7 +44,7 @@
 
 \usepackage{parskip} % no indent with new paragraph
 
-% ===================================================================
+% ================= TITLE, AUTHOR==================================================
 \title{INSTRUCTIONS FOR FORMATTING YOUR PAPER
 INTERNATIONAL SNOW SCIENCE WORKSHOP 2026, WHISTLER, CANADA}
 
@@ -61,14 +61,11 @@ Depthina A. Hoar, Institute of Hoarticulture,\\
 Walla Walla, WA 98523-1234;\\
 tel: +1 509-555-1234; fax: +1 509-555-1235\\
 email: dhoar@depth.snow}
-
-
-
 % ===================================================================
 
 \begin{document}
 
-
+% ==================== ABSTRACT ===============================================
 \begin{abstract}
 These instructions are laid out in the same format as is requested for ISSW 2026 conference proceedings. The abstract should be less than 300 words. It can be either the same as your initial short abstracts or you can make changes as you wish, for example include new results or insights you have obtained since your initial submission.
 \end{abstract}
@@ -78,6 +75,7 @@ Select 3-6 keywords.
 \end{keyword}
 
 \maketitle
+% ===================================================================
 
 
 \section{INTRODUCTION}
@@ -155,7 +153,7 @@ Company logos and identification numbers are not permitted on your illustrations
 \end{figure}
 
 \begin{taggedtable}{h}{tab:example_table}{A table showing a series of values.}{lcc}
-  \HeaderRow{\textit{Location} & \textit{Value 1 (cm)} & \textit{Value 2 (m)}}
+  \HeaderRow{\textbf{\textit{Location}} & \textbf{\textit{Value 1 (cm)}} & \textbf{\textit{Value 2 (m)}}}
   \Row{Location a & 9.0 & 7.0}
   \Row{Location b & 19.5 & 5.6}
   \Row{Location c & 27.7 & 9.6}
