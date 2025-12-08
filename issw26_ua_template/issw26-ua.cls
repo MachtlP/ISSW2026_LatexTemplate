@@ -148,7 +148,8 @@
 }
 
 % Mark corresponding author in the author line (star)
-\newcommand\corref[1]{\textsuperscript{*}}
+\newcommand\corref[1]{\textsuperscript{*}\footnotemark}
+
 
 % Store corresponding author block (to be printed as a footnote)
 \newcommand\cortext[2][]{%
@@ -314,6 +315,7 @@
 
 \newcommand{\HeaderRow}[1]{%
   \hline
+  \rowcolor{gray!20}%
   #1\\%
   \hline
 }
