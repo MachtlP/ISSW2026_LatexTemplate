@@ -15,4 +15,4 @@ A LaTex version of the ISSW template that aims to align with the official Word d
 - 2018: JT Fischer
 - 2023: HP Marshall
 - 2024: ?
-- 2026: Simon Horton
+- 2026: Simon Horton, Martin Perfler
